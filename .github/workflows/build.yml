@@ -27,7 +27,7 @@ jobs:
       matrix:
         include:
           - os: windows-latest
-            arch: x64
+            arch: x86_64
           - os: windows-11-arm
             arch: arm64
     runs-on: ${{ matrix.os }}
@@ -41,16 +41,17 @@ jobs:
       - uses: astral-sh/setup-uv@v5
       - run: uv sync --project obox
       - run: uv run --project obox python obox/scripts/pack_extension.py . --dist dist
-      - name: Rename per arch
+      - name: Name per arch
         shell: pwsh
         run: |
-          Get-ChildItem dist -Filter *.oix | ForEach-Object {
-            Copy-Item $_.FullName ("dist/" + ${{ 'webapp' }} + "-" + ${{ matrix.arch }} + ".oix")
+          New-Item -ItemType Directory -Force -Path dist-release | Out-Null
+          Get-ChildItem dist -Filter *.oix | Select-Object -First 1 | ForEach-Object {
+            Copy-Item $_.FullName ("dist-release/webapp-" + ${{ github.ref_name }} + "-" + ${{ matrix.arch }} + ".oix")
           }
       - uses: actions/upload-artifact@v4
         with:
           name: webapp-${{ matrix.arch }}
-          path: dist/*.oix
+          path: dist-release/*.oix
 
   release:
     if: startsWith(github.ref, 'refs/tags/v')
