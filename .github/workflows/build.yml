@@ -1,0 +1,65 @@
+name: build
+
+on:
+  pull_request:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: obox-py/obox
+          path: obox
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --project obox
+      - run: uv run --project obox python -c "import json; json.load(open('extension.json'))"
+      - run: uv run --project obox python obox/scripts/pack_extension.py . --dist dist
+
+  package:
+    if: startsWith(github.ref, 'refs/tags/v')
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            arch: x64
+          - os: windows-11-arm
+            arch: arm64
+    runs-on: ${{ matrix.os }}
+    continue-on-error: ${{ matrix.arch == 'arm64' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: obox-py/obox
+          path: obox
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --project obox
+      - run: uv run --project obox python obox/scripts/pack_extension.py . --dist dist
+      - name: Rename per arch
+        shell: pwsh
+        run: |
+          Get-ChildItem dist -Filter *.oix | ForEach-Object {
+            Copy-Item $_.FullName ("dist/" + ${{ 'webapp' }} + "-" + ${{ matrix.arch }} + ".oix")
+          }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: webapp-${{ matrix.arch }}
+          path: dist/*.oix
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: artifacts/**/*.oix

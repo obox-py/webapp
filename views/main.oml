@@ -1,0 +1,67 @@
+<Div id="webapp-root">
+  <Flex id="webapp-toolbar" direction="row" align="center" gap="8">
+    <Input id="webapp-search" placeholder="{{i18n.webapp.search}}" value="{{query}}" on_input="true" grow="1" />
+    <Button id="webapp-new" text="{{i18n.webapp.new}}" type="primary" on_click="true" />
+  </Flex>
+  <Alert id="st-windows" o-if="status == 'windowsOnly'" text="{{i18n.webapp.windowsonly}}" type="warn" />
+  <Alert id="st-no-chrome" o-if="status == 'noChrome'" text="{{i18n.webapp.nochrome}}" type="error" />
+  <Alert id="st-over-limit" o-if="status == 'overLimit'" text="{{i18n.webapp.overlimit}}" type="warn" />
+  <Alert id="st-opened" o-if="status == 'opened'" text="{{i18n.webapp.opened}}" type="info" />
+  <Alert id="st-confirm" o-if="status == 'confirmDelete'" text="{{i18n.webapp.confirmdelete}} {{pendingName}}" type="warn" />
+  <Div id="webapp-list">
+    <Card id="site-{{item.id}}" o-for="item in sites">
+      <Text id="site-name-{{item.id}}" text="{{item.name}}" size="14" />
+      <Text id="site-url-{{item.id}}" text="{{item.url}}" size="12" />
+      <Flex id="site-actions-{{item.id}}" direction="row" gap="8">
+        <Button id="open-{{item.id}}" text="{{i18n.webapp.open}}" type="primary" on_click="true" />
+        <Button id="edit-{{item.id}}" text="{{i18n.webapp.edit}}" on_click="true" />
+        <Button id="del-{{item.id}}" text="{{i18n.webapp.delete}}" type="danger" on_click="true" />
+      </Flex>
+    </Card>
+    <Text id="webapp-empty" text="{{i18n.webapp.empty}}" o-if="empty" />
+    <Modal id="confirm-modal" title="{{i18n.webapp.deleteconfirmtitle}}" variant="confirm" width="420" close_on_overlay="true">
+    <Text id="confirm-line" text="{{i18n.webapp.deleteconfirm}}" size="14" />
+    <Text id="confirm-name" text="{{pendingName}}" size="16" weight="600" />
+    <Button id="delete-cancel" text="{{i18n.webapp.cancel}}" on_click="true" />
+    <Button id="delete-ok" text="{{i18n.webapp.delete}}" type="danger" on_click="true" />
+  </Modal>
+</Div>
+  <Modal id="site-modal" title="{{i18n.webapp.formtitle}}" width="520" height="520" close_on_overlay="true">
+    <Collapse id="site-group-basic" title="{{i18n.webapp.g.basic}}" open="true">
+      <Text id="t-name" text="{{i18n.webapp.name}}" size="12" />
+      <Input id="site-name" placeholder="{{i18n.webapp.name}}" value="{{form.name}}" on_input="true" />
+      <Text id="t-url" text="{{i18n.webapp.url}}" size="12" />
+      <Input id="site-url" placeholder="{{i18n.webapp.url}}" value="{{form.url}}" on_input="true" />
+      <Text id="t-desc" text="{{i18n.webapp.desc}}" size="12" />
+      <Input id="site-desc" placeholder="{{i18n.webapp.desc}}" value="{{form.desc}}" on_input="true" />
+    </Collapse>
+    <Collapse id="site-group-window" title="{{i18n.webapp.g.window}}" open="false">
+      <Text id="t-size" text="{{i18n.webapp.size}}" size="12" />
+      <Input id="site-size" placeholder="{{i18n.webapp.size}}" value="{{form.windowSize}}" on_input="true" />
+      <Text id="t-pos" text="{{i18n.webapp.pos}}" size="12" />
+      <Input id="site-pos" placeholder="{{i18n.webapp.pos}}" value="{{form.windowPos}}" on_input="true" />
+      <Text id="t-lang" text="{{i18n.webapp.lang}}" size="12" />
+      <Input id="site-lang" placeholder="{{i18n.webapp.lang}}" value="{{form.lang}}" on_input="true" />
+      <Text id="t-scale" text="{{i18n.webapp.scale}}" size="12" />
+      <Input id="site-scale" placeholder="{{i18n.webapp.scale}}" value="{{form.scaleFactor}}" on_input="true" />
+      <Flex id="site-max-row" direction="row" align="center" gap="8">
+      <Switch id="site-max" checked="{{form.startMaximized}}" on_checkedchange="true" />
+      <Text id="site-max-label" text="{{i18n.webapp.max}}" size="14" />
+      </Flex>
+      <Flex id="site-gpu-row" direction="row" align="center" gap="8">
+      <Switch id="site-gpu" checked="{{form.disableGpu}}" on_checkedchange="true" />
+      <Text id="site-gpu-label" text="{{i18n.webapp.gpu}}" size="14" />
+      </Flex>
+    </Collapse>
+    <Collapse id="site-group-advanced" title="{{i18n.webapp.g.advanced}}" open="false">
+      <Flex id="site-ignore-row" direction="row" align="center" gap="8">
+      <Switch id="site-ignore" checked="{{form.ignore}}" on_checkedchange="true" />
+      <Text id="site-ignore-label" text="{{i18n.webapp.ignore}}" size="14" />
+      </Flex>
+      <Text id="t-extra" text="{{i18n.webapp.extra}}" size="12" />
+      <Input id="site-extra" placeholder="{{i18n.webapp.extra}}" value="{{form.extraOrigins}}" on_input="true" />
+    </Collapse>
+    <Button id="site-cancel" text="{{i18n.webapp.cancel}}" on_click="true" />
+    <Button id="site-save" text="{{i18n.webapp.save}}" type="primary" on_click="true" />
+  </Modal>
+</Div>

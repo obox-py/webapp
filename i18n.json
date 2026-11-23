@@ -1,0 +1,146 @@
+{
+  "webapp.title": {
+    "zh-CN": "网页应用",
+    "en-US": "Web apps"
+  },
+  "webapp.search": {
+    "zh-CN": "搜索站点",
+    "en-US": "Search sites"
+  },
+  "webapp.new": {
+    "zh-CN": "新建站点",
+    "en-US": "New site"
+  },
+  "webapp.empty": {
+    "zh-CN": "还没有站点，点「新建站点」",
+    "en-US": "No sites yet"
+  },
+  "webapp.open": {
+    "zh-CN": "打开",
+    "en-US": "Open"
+  },
+  "webapp.edit": {
+    "zh-CN": "编辑",
+    "en-US": "Edit"
+  },
+  "webapp.delete": {
+    "zh-CN": "删除",
+    "en-US": "Delete"
+  },
+  "webapp.save": {
+    "zh-CN": "保存",
+    "en-US": "Save"
+  },
+  "webapp.cancel": {
+    "zh-CN": "取消",
+    "en-US": "Cancel"
+  },
+  "webapp.name": {
+    "zh-CN": "名称",
+    "en-US": "Name"
+  },
+  "webapp.url": {
+    "zh-CN": "网址",
+    "en-US": "URL"
+  },
+  "webapp.ignore": {
+    "zh-CN": "忽略证书错误",
+    "en-US": "Ignore certificate errors"
+  },
+  "webapp.formnew": {
+    "zh-CN": "新建站点",
+    "en-US": "New site"
+  },
+  "webapp.formedit": {
+    "zh-CN": "编辑站点",
+    "en-US": "Edit site"
+  },
+  "webapp.confirmdelete": {
+    "zh-CN": "再点一次删除",
+    "en-US": "Click again to delete"
+  },
+  "webapp.needname": {
+    "zh-CN": "名称不能为空",
+    "en-US": "Name is required"
+  },
+  "webapp.needurl": {
+    "zh-CN": "网址必须以 http:// 或 https:// 开头",
+    "en-US": "URL must start with http:// or https://"
+  },
+  "webapp.dupname": {
+    "zh-CN": "名称已存在",
+    "en-US": "Name already exists"
+  },
+  "webapp.nochrome": {
+    "zh-CN": "未找到 Chrome",
+    "en-US": "Chrome not found"
+  },
+  "webapp.windowsonly": {
+    "zh-CN": "仅支持 Windows",
+    "en-US": "Windows only"
+  },
+  "webapp.overlimit": {
+    "zh-CN": "站点数据超过上限，请清理缓存",
+    "en-US": "Site data exceeds the limit; clear the cache"
+  },
+  "webapp.opened": {
+    "zh-CN": "已打开",
+    "en-US": "Opened"
+  },
+  "webapp.formtitle": {
+    "zh-CN": "站点配置",
+    "en-US": "Site"
+  },
+  "webapp.desc": {
+    "zh-CN": "说明",
+    "en-US": "Description"
+  },
+  "webapp.size": {
+    "zh-CN": "窗口尺寸（宽,高）",
+    "en-US": "Window size (W,H)"
+  },
+  "webapp.pos": {
+    "zh-CN": "窗口位置（X,Y）",
+    "en-US": "Window position (X,Y)"
+  },
+  "webapp.lang": {
+    "zh-CN": "界面语言（如 zh-CN）",
+    "en-US": "UI language"
+  },
+  "webapp.scale": {
+    "zh-CN": "缩放比例（如 1.25）",
+    "en-US": "Scale factor"
+  },
+  "webapp.extra": {
+    "zh-CN": "额外 origin（逗号分隔）",
+    "en-US": "Extra origins"
+  },
+  "webapp.max": {
+    "zh-CN": "启动即最大化",
+    "en-US": "Start maximized"
+  },
+  "webapp.gpu": {
+    "zh-CN": "禁用 GPU 加速",
+    "en-US": "Disable GPU"
+  },
+  "webapp.deleteconfirmtitle": {
+    "zh-CN": "删除站点",
+    "en-US": "Delete site"
+  },
+  "webapp.deleteconfirm": {
+    "zh-CN": "确定删除这个站点？删除后不可恢复：",
+    "en-US": "Delete this site? This cannot be undone:"
+  },
+  "webapp.g.basic": {
+    "zh-CN": "基本",
+    "en-US": "Basic"
+  },
+  "webapp.g.window": {
+    "zh-CN": "窗口与启动",
+    "en-US": "Window & launch"
+  },
+  "webapp.g.advanced": {
+    "zh-CN": "证书与高级",
+    "en-US": "Certificates & advanced"
+  }
+}
