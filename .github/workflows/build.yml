@@ -47,10 +47,13 @@ jobs:
       - run: uv run --project obox python obox/scripts/pack_extension.py . --dist dist
       - name: Name per arch
         shell: pwsh
+        env:
+          REF_NAME: ${{ github.ref_name }}
+          ARCH: ${{ matrix.arch }}
         run: |
           New-Item -ItemType Directory -Force -Path dist-release | Out-Null
           Get-ChildItem dist -Filter *.oix | Select-Object -First 1 | ForEach-Object {
-            Copy-Item $_.FullName ("dist-release/webapp-" + ${{ github.ref_name }} + "-" + ${{ matrix.arch }} + ".oix")
+            Copy-Item $_.FullName ("dist-release/webapp-" + $env:REF_NAME + "-" + $env:ARCH + ".oix")
           }
       - uses: actions/upload-artifact@v4
         with:
