@@ -17,7 +17,7 @@ jobs:
           path: obox
       - uses: astral-sh/setup-uv@v5
       - run: uv sync --project obox
-      - run: uv run --project obox python -c "import json; json.load(open('extension.json'))"
+      - run: uv run --project obox python -c "import json; json.load(open('extension.json', encoding='utf-8'))"
       - run: uv run --project obox python obox/scripts/pack_extension.py . --dist dist
 
   package:
