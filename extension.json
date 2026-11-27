@@ -1,6 +1,6 @@
 {
   "name": "webapp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "chenzhi",
   "description": "网页应用：用 Chrome 应用模式打开站点，每条目独立 profile",
   "main": "extension.py",
